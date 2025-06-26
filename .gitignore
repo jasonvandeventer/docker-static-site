@@ -1,0 +1,21 @@
+# Node build artifacts (if you ever add tooling)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Docker build cache
+Dockerfile.build
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# Environment files (if you ever add any)
+.env
