@@ -1,21 +1,12 @@
-# Stage 1: Build assets
-FROM node:18-alpine3.20 AS builder
+# Dockerfile
 
-RUN apk update && apk upgrade --no-cache
-
-WORKDIR /app
-COPY . .
-#
-
-# Stage 2: Serve with Nginx
-FROM nginx:1.25.1-alpine AS runtime
+# If no build is needed, skip Node stage
+FROM nginx:1.25.1-alpine
 LABEL maintainer="Jason jason@vanfreckle.com"
 
-RUN apk update \
-	&& apk upgrade --no-cache \
-	&& rm -rf /var/cache/apk/*
+# Copy static files
+COPY index.html styles.css /usr/share/nginx/html/
 
-COPY --from=builder /app /usr/share/nginx/html
-
+# Expose port
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
